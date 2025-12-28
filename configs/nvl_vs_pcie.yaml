@@ -1,0 +1,43 @@
+seed: 42
+
+cluster:
+  name: "nvlink-vs-pcie"
+  nodes: 8
+  gpus_per_node: 8
+  gpu_type: "H100"
+  interconnect: "PCIE"
+  efficiency_factor: 0.83
+
+pricing:
+  gpu_hour_cost_usd: 3.25
+  overhead_multiplier: 1.15
+
+simulation:
+  duration_minutes: 720
+  time_step_minutes: 1
+
+scheduler:
+  policy: "FFD"
+  enable_inference_priority: true
+  enable_preemption: false
+
+workload:
+  job_streams:
+    - name: "training"
+      job_type: "training"
+      arrivals_per_hour: 6
+      gpus_required_min: 4
+      gpus_required_max: 8
+      duration_minutes_min: 60
+      duration_minutes_max: 240
+      priority: 2
+
+    - name: "inference"
+      job_type: "inference"
+      arrivals_per_hour: 35
+      gpus_required_min: 1
+      gpus_required_max: 2
+      duration_minutes_min: 2
+      duration_minutes_max: 10
+      priority: 1
+      sla_wait_minutes: 2
