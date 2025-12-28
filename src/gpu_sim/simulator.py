@@ -145,7 +145,7 @@ def run_simulation(
     if not jobs_df.empty:
         inf = jobs_df[jobs_df["job_type"] == "inference"]
         if len(inf) > 0 and "sla_violation" in inf.columns:
-            sla_viol_rate = float(inf["sla_violation"].fillna(False).mean())
+            sla_viol_rate = float(inf["sla_violation"].fillna(False).astype(bool).mean())
 
     summary: Dict[str, Any] = {
         "cluster_name": cluster_cfg.name,
