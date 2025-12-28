@@ -30,3 +30,13 @@ pip install -e .[dev]
 
 ### Queue Depth / SLA Pressure
 ![Queue & SLA](docs/images/queue_sla.png)
+
+---
+
+## Results & Insights
+
+### GPU Utilization
+![GPU Utilization](docs/images/utilization.png)
+
+### Queue Depth / SLA Pressure
+![Queue & SLA](docs/images/queue_sla.png)
