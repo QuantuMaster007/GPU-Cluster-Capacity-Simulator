@@ -11,6 +11,13 @@ This project is intentionally **infrastructure-focused**.
 It demonstrates how **AI compute systems behave under load**, rather than how to train or optimize ML models.
 
 ---
+## Demo
+
+[**Open the Live Streamlit Demo**](https://gpu-cluster-capacity-simulator-dowfm5mzyh6mzerqh8agwj.streamlit.app/)
+
+[![Streamlit Demo Screenshot](docs/images/demo.png)](https://gpu-cluster-capacity-simulator-dowfm5mzyh6mzerqh8agwj.streamlit.app/)
+
+---
 
 ## What this simulator models
 
