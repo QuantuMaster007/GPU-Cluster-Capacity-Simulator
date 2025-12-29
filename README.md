@@ -1,61 +1,69 @@
 GPU Cluster Capacity Simulator
-
+Overview
 A lightweight simulator for GPU cluster capacity planning for AI workloads.
-Models utilization, queueing delay, packing/fragmentation, and a simplified cost view.
 
-This project demonstrates AI infrastructure–level thinking: capacity planning, scheduling tradeoffs, queueing/SLA behavior, and cost efficiency.
-
-ARCHITECTURE
-The simulator models how job arrivals, scheduling policies, and cluster topology interact to determine:
-- GPU utilization
-- Queue depth & wait time
+This project models utilization, queueing delay, packing/fragmentation effects, and a simplified cost view. It is designed to demonstrate infrastructure-level thinking rather than ML model optimization.
+What This Simulator Covers
+- GPU utilization and saturation behavior
+- Queue depth and wait-time dynamics (P50 / P95)
 - Inference SLA violations
-- Cost efficiency
+- Cost efficiency and capacity tradeoffs
 
-QUICKSTART
-1) Create environment & install
+Architecture
+The simulator models the interaction between workload arrivals, scheduling policies, and cluster topology to estimate real-world behavior.
+
+Flow:
+1. Job arrivals (training and inference)
+2. Scheduler assigns GPUs (packing + fragmentation)
+3. Simulator tracks time-series metrics
+4. Reports utilization, queueing, SLA, and cost
+
+Quickstart
+1. Create and activate environment
 python -m venv .venv
 source .venv/bin/activate
 python -m pip install -U pip
-pip install -e ".[dev]"
+pip install -e .[dev]
 
-2) Run a simulation
+2. Run a simulation
 gpu-sim run --config configs/base.yaml --out results/base_tick.csv --out-jobs results/base_jobs.csv
 
-SCENARIOS INCLUDED
-- base.yaml – Balanced training + inference baseline
-- mixed_workloads.yaml – Training + inference contention
-- inference_spike.yaml – SLA pressure during bursts
-- nvl_vs_pcie.yaml – Interconnect sensitivity
+Scenarios Included
+- Base: Balanced training and inference baseline
+- Mixed Workloads: Fragmentation and contention effects
+- Inference Spike: SLA pressure during bursts
+- NVLink vs PCIe: Interconnect efficiency sensitivity
 
-RESULTS & INSIGHTS
-GPU Utilization:
-High average utilization does not guarantee good latency or SLA behavior.
+Results & Insights
+Key observations from simulation results:
 
-Queue Depth / SLA Pressure:
-Inference SLA violations appear before GPUs look fully saturated.
+- High utilization does not guarantee low latency
+- Queue depth grows rapidly under bursty inference
+- SLA violations often appear before GPUs are fully saturated
 
-STREAMLIT DASHBOARD
+Streamlit Dashboard
+An interactive dashboard enables live simulation and visualization.
+
 Run:
 pip install -r requirements.txt
 streamlit run app.py
 
-Allows scenario comparison, live simulation, KPI visualization.
+Features:
+- Scenario selection
+- Live simulation execution
+- KPI cards (utilization, P95 wait, SLA rate, cost)
+- Time-series charts
 
-DEVELOPMENT
-pytest -q
-ruff check .
+Why This Project Exists
+Modern AI infrastructure challenges are dominated by capacity planning, scheduling tradeoffs, and cost efficiency rather than raw GPU count alone.
 
-WHY THIS PROJECT
-Shows how AI compute systems behave in practice, focusing on infra tradeoffs rather than ML optimization.
-
-ROADMAP
-- Pool partitioning
-- Preemption
-- Workload traces
+This project highlights why queueing theory, workload mix, and scheduler design matter in real systems.
+Roadmap
+- Pool partitioning (training vs inference)
+- Priority scheduling and preemption
+- Trace-driven workloads
 - Multi-cluster comparison
-- Cost optimization
+- Advanced cost modeling
 
-LICENSE
+License
 MIT License
-
