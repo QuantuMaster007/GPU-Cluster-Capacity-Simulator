@@ -1,86 +1,62 @@
-# GPU Cluster Capacity Simulator
 
-A lightweight simulator for **GPU cluster capacity planning** for AI workloads.  
-Models **utilization, queueing delay, packing / fragmentation**, and a simplified **cost view**.
+GPU Cluster Capacity Simulator
 
-This project demonstrates **AI compute + infrastructure-level thinking**: capacity planning, scheduling tradeoffs, queueing/SLA behavior, and cost efficiency.
+A lightweight simulator for GPU cluster capacity planning for AI workloads.
+Models utilization, queueing delay, packing/fragmentation, and a simplified cost view.
 
----
+This project demonstrates AI infrastructure–level thinking: capacity planning, scheduling tradeoffs, queueing/SLA behavior, and cost efficiency.
 
-## Architecture
-![Architecture](docs/images/architecture.svg)
+ARCHITECTURE
+The simulator models how job arrivals, scheduling policies, and cluster topology interact to determine:
+- GPU utilization
+- Queue depth & wait time
+- Inference SLA violations
+- Cost efficiency
 
----
-
-## Quickstart
-
-### 1) Create environment & install
-```bash
+QUICKSTART
+1) Create environment & install
 python -m venv .venv
 source .venv/bin/activate
 python -m pip install -U pip
-pip install -e .[dev]
+pip install -e ".[dev]"
 
----
+2) Run a simulation
+gpu-sim run --config configs/base.yaml --out results/base_tick.csv --out-jobs results/base_jobs.csv
 
-## Results & Insights
+SCENARIOS INCLUDED
+- base.yaml – Balanced training + inference baseline
+- mixed_workloads.yaml – Training + inference contention
+- inference_spike.yaml – SLA pressure during bursts
+- nvl_vs_pcie.yaml – Interconnect sensitivity
 
-### GPU Utilization
-![GPU Utilization](docs/images/utilization.png)
+RESULTS & INSIGHTS
+GPU Utilization:
+High average utilization does not guarantee good latency or SLA behavior.
 
-### Queue Depth / SLA Pressure
-![Queue & SLA](docs/images/queue_sla.png)
+Queue Depth / SLA Pressure:
+Inference SLA violations appear before GPUs look fully saturated.
 
----
-
-## Results & Insights
-
-### GPU Utilization
-![GPU Utilization](docs/images/utilization.png)
-
-### Queue Depth / SLA Pressure
-![Queue & SLA](docs/images/queue_sla.png)
-
----
-
-## Streamlit Dashboard
-
-Run an interactive dashboard to compare scenarios and visualize utilization + queue depth.
-
-```bash
-pip install streamlit plotly
+STREAMLIT DASHBOARD
+Run:
+pip install -r requirements.txt
 streamlit run app.py
 
+Allows scenario comparison, live simulation, KPI visualization.
 
-```bash
-git add README.md
-git commit -m "Add Streamlit run instructions to README"
-git push
+DEVELOPMENT
+pytest -q
+ruff check .
 
-![CI](https://github.com/QuantuMaster007/GPU-Cluster-Capacity-Simulator/actions/workflows/ci.yml/badge.svg)
-![Python](https://img.shields.io/badge/python-3.11%2B-blue)
+WHY THIS PROJECT
+Shows how AI compute systems behave in practice, focusing on infra tradeoffs rather than ML optimization.
 
----
+ROADMAP
+- Pool partitioning
+- Preemption
+- Workload traces
+- Multi-cluster comparison
+- Cost optimization
 
-## Streamlit Dashboard
+LICENSE
+MIT License
 
-Run an interactive dashboard to compare scenarios and visualize utilization + queue depth.
-
-```bash
-pip install streamlit plotly
-streamlit run app.py
-
-
-Verify:
-```bash
-tail -n 30 README.md
-
----
-
-## Streamlit Dashboard
-
-Run an interactive dashboard to compare scenarios and visualize utilization + queue depth.
-
-```bash
-pip install streamlit plotly
-streamlit run app.py
