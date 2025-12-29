@@ -3,53 +3,63 @@
     <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
       <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
       <feOffset dx="2" dy="2" result="offsetblur"/>
-      <feComponentTransfer>
-        <feFuncA type="linear" slope="0.2"/>
-      </feComponentTransfer>
-      <feMerge>
-        <feMergeNode/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
+      <feComponentTransfer><feFuncA type="linear" slope="0.2"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
-    
     <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
       <polygon points="0 0, 10 3.5, 0 7" fill="#444"/>
     </marker>
   </defs>
-
   <style>
-    .box-input { fill: #e3f2fd; stroke: #1976d2; stroke-width: 2; }
+    .box-in { fill: #e3f2fd; stroke: #1976d2; stroke-width: 2; }
     .box-core { fill: #f1f8e9; stroke: #388e3c; stroke-width: 2; }
-    .box-output { fill: #fff3e0; stroke: #f57c00; stroke-width: 2; }
-    .title { font: bold 22px 'Segoe UI', Arial, sans-serif; fill: #263238; }
-    .label { font: bold 14px 'Segoe UI', Arial, sans-serif; fill: #333; }
-    .small { font: 12px 'Segoe UI', Arial, sans-serif; fill: #555; }
-    .arrow { stroke: #444; stroke-width: 2; marker-end: url(#arrowhead); fill: none; }
+    .box-out { fill: #fff3e0; stroke: #f57c00; stroke-width: 2; }
+    .t1 { font: bold 22px Arial, sans-serif; fill: #263238; }
+    .t2 { font: bold 14px Arial, sans-serif; fill: #333; }
+    .t3 { font: 12px Arial, sans-serif; fill: #555; }
+    .line { stroke: #444; stroke-width: 2; marker-end: url(#arrowhead); fill: none; }
   </style>
-
-  <text x="460" y="40" text-anchor="middle" class="title">GPU Cluster Capacity Simulator Architecture</text>
-
+  <text x="460" y="40" text-anchor="middle" class="t1">GPU Cluster Capacity Simulator Architecture</text>
   <g filter="url(#shadow)">
-    <rect x="50" y="80" width="240" height="130" rx="10" class="box-input"/>
-    <text x="170" y="110" text-anchor="middle" class="label">CONFIG &amp; WORKLOADS</text>
-    <text x="70" y="135" class="small">• Cluster Topology (Nodes/GPUs)</text>
-    <text x="70" y="155" class="small">• Poisson Job Arrival Rates</text>
-    <text x="70" y="175" class="small">• Training vs Inference Specs</text>
-    <text x="70" y="195" class="small">• Pricing &amp; SLA Tiers</text>
+    <rect x="50" y="80" width="240" height="130" rx="10" class="box-in"/>
+    <text x="170" y="110" text-anchor="middle" class="t2">CONFIG &amp; WORKLOADS</text>
+    <text x="70" y="135" class="t3">• Cluster Topology (Nodes/GPUs)</text>
+    <text x="70" y="155" class="t3">• Poisson Job Arrival Rates</text>
+    <text x="70" y="175" class="t3">• Training vs Inference Specs</text>
   </g>
-
   <g filter="url(#shadow)">
-    <rect x="340" y="80" width="240" height="130" rx="10" class="box-input"/>
-    <text x="460" y="110" text-anchor="middle" class="label">CLI CONTROLLER</text>
-    <text x="360" y="135" class="small">• argparse Command Parser</text>
-    <text x="360" y="155" class="small">• Config Validation Engine</text>
-    <text x="360" y="175" class="small">• Simulation Parameter Injection</text>
+    <rect x="340" y="80" width="240" height="130" rx="10" class="box-in"/>
+    <text x="460" y="110" text-anchor="middle" class="t2">CLI CONTROLLER</text>
+    <text x="360" y="135" class="t3">• argparse Command Parser</text>
+    <text x="360" y="155" class="t3">• Config Validation Engine</text>
   </g>
-
   <g filter="url(#shadow)">
     <rect x="310" y="260" width="300" height="160" rx="10" class="box-core"/>
-    <text x="460" y="290" text-anchor="middle" class="label">SIMULATION ENGINE</text>
-    <text x="330" y="320" class="small">• Discrete-Time Event Loop</text>
-    <text x="330" y="340" class="small">• First-Fit Decreasing (FFD) Scheduler</text>
-    <text x="330" y="360" class="small">• Fragmentation &amp; Packing Logic</text>
-    <text x="330" y="3
+    <text x="460" y="290" text-anchor="middle" class="t2">SIMULATION ENGINE</text>
+    <text x="330" y="320" class="t3">• Discrete-Time Event Loop</text>
+    <text x="330" y="340" class="t3">• First-Fit Decreasing (FFD) Scheduler</text>
+    <text x="330" y="360" class="t3">• Fragmentation &amp; Packing Logic</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="650" y="260" width="220" height="160" rx="10" class="box-core"/>
+    <text x="760" y="290" text-anchor="middle" class="t2">HARDWARE MODEL</text>
+    <text x="670" y="320" class="t3">• Virtual Node Registry</text>
+    <text x="670" y="340" class="t3">• GPU Memory/Compute State</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="50" y="260" width="220" height="160" rx="10" class="box-core"/>
+    <text x="160" y="290" text-anchor="middle" class="t2">METRICS ANALYZER</text>
+    <text x="70" y="320" class="t3">• GPU Utilization (%)</text>
+    <text x="70" y="340" class="t3">• Queue Wait Time Analysis</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="310" y="470" width="300" height="80" rx="10" class="box-out"/>
+    <text x="460" y="500" text-anchor="middle" class="t2">DATA OUTPUTS</text>
+    <text x="460" y="525" text-anchor="middle" class="t3">CSV Logs | Plotly Visuals | Insights Report</text>
+  </g>
+  <path d="M 290 145 L 340 145" class="line"/>
+  <path d="M 460 210 L 460 260" class="line"/>
+  <path d="M 310 340 L 270 340" class="line"/>
+  <path d="M 610 340 L 650 340" class="line"/>
+  <path d="M 460 420 L 460 470" class="line"/>
+</svg>
