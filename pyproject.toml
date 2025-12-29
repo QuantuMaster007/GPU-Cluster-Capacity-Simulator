@@ -9,16 +9,21 @@ description = "GPU cluster capacity simulator for AI workloads (utilization, que
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
-  "numpy>=1.24",
-  "pandas>=2.0",
-  "PyYAML>=6.0",
+  "pandas>=2.2",
+  "pyyaml>=6.0",
 ]
 
 [project.optional-dependencies]
 dev = [
-  "pytest>=7.0",
-  "ruff>=0.4",
-  "matplotlib>=3.7",
+  "pytest>=8.0",
+  "ruff>=0.5",
+  "matplotlib>=3.8",
+]
+
+# Optional extra specifically for running the Streamlit demo locally
+demo = [
+  "streamlit>=1.36",
+  "plotly>=5.20",
 ]
 
 [project.scripts]
