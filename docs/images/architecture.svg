@@ -1,9 +1,9 @@
 <svg width="920" height="520" viewBox="0 0 920 520" xmlns="http://www.w3.org/2000/svg">
   <style>
     .box { fill: #f8f9fb; stroke: #333; stroke-width: 1.5; }
-    .title { font: bold 16px Arial, sans-serif; }
-    .label { font: 13px Arial, sans-serif; }
-    .small { font: 12px Arial, sans-serif; fill: #333; }
+    .title { font: bold 18px Arial, sans-serif; fill: #1a1a1a; }
+    .label { font: bold 14px Arial, sans-serif; fill: #222; }
+    .small { font: 12px Arial, sans-serif; fill: #444; }
     .arrow { stroke: #333; stroke-width: 1.5; marker-end: url(#arrowhead); }
   </style>
 
@@ -13,7 +13,7 @@
     </marker>
   </defs>
 
-  <text x="460" y="28" text-anchor="middle" class="title">
+  <text x="460" y="35" text-anchor="middle" class="title">
     GPU Cluster Capacity Simulator — Architecture
   </text>
 
@@ -29,23 +29,23 @@
   <text x="460" y="145" text-anchor="middle" class="small">Loads config</text>
   <text x="460" y="165" text-anchor="middle" class="small">Runs simulation</text>
 
+  <rect x="80" y="240" width="220" height="140" rx="8" class="box"/>
+  <text x="190" y="270" text-anchor="middle" class="label">Metrics</text>
+  <text x="190" y="295" text-anchor="middle" class="small">Utilization</text>
+  <text x="190" y="315" text-anchor="middle" class="small">Queue depth</text>
+  <text x="190" y="335" text-anchor="middle" class="small">Wait &amp; SLA</text>
+
   <rect x="320" y="240" width="280" height="140" rx="8" class="box"/>
   <text x="460" y="270" text-anchor="middle" class="label">Simulation Engine</text>
   <text x="460" y="295" text-anchor="middle" class="small">Job arrivals (Poisson)</text>
   <text x="460" y="315" text-anchor="middle" class="small">FFD scheduler + packing</text>
   <text x="460" y="335" text-anchor="middle" class="small">Discrete-time event loop</text>
 
-  <rect x="660" y="240" width="220" height="140" rx="8" class="box"/>
-  <text x="770" y="270" text-anchor="middle" class="label">GPU Cluster Model</text>
-  <text x="770" y="295" text-anchor="middle" class="small">Nodes</text>
-  <text x="770" y="315" text-anchor="middle" class="small">GPUs / node</text>
-  <text x="770" y="335" text-anchor="middle" class="small">Free vs busy GPUs</text>
-
-  <rect x="160" y="240" width="220" height="140" rx="8" class="box"/>
-  <text x="270" y="270" text-anchor="middle" class="label">Metrics</text>
-  <text x="270" y="295" text-anchor="middle" class="small">Utilization</text>
-  <text x="270" y="315" text-anchor="middle" class="small">Queue depth</text>
-  <text x="270" y="335" text-anchor="middle" class="small">Wait & SLA</text>
+  <rect x="620" y="240" width="220" height="140" rx="8" class="box"/>
+  <text x="730" y="270" text-anchor="middle" class="label">GPU Cluster Model</text>
+  <text x="730" y="295" text-anchor="middle" class="small">Nodes</text>
+  <text x="730" y="315" text-anchor="middle" class="small">GPUs / node</text>
+  <text x="730" y="335" text-anchor="middle" class="small">Free vs busy GPUs</text>
 
   <rect x="320" y="420" width="280" height="70" rx="8" class="box"/>
   <text x="460" y="450" text-anchor="middle" class="label">Outputs</text>
@@ -53,7 +53,7 @@
 
   <line x1="300" y1="130" x2="360" y2="130" class="arrow"/>
   <line x1="460" y1="190" x2="460" y2="240" class="arrow"/>
-  <line x1="460" y1="310" x2="660" y2="310" class="arrow"/>
-  <line x1="460" y1="310" x2="380" y2="310" class="arrow"/>
+  <line x1="600" y1="310" x2="620" y2="310" class="arrow"/>
+  <line x1="320" y1="310" x2="300" y2="310" class="arrow"/>
   <line x1="460" y1="380" x2="460" y2="420" class="arrow"/>
 </svg>
