@@ -1,5 +1,6 @@
 GPU Cluster Capacity Simulator
-Overview
+
+Overview:
 A lightweight simulator for GPU cluster capacity planning for AI workloads.
 
 This project models utilization, queueing delay, packing/fragmentation effects, and a simplified cost view. It is designed to demonstrate infrastructure-level thinking rather than ML model optimization.
