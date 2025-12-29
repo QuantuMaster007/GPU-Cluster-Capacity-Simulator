@@ -1,3 +1,7 @@
+# App deps
 streamlit
 plotly
 pandas
+
+# Install this repo as a package (provides gpu-sim CLI)
+-e .
