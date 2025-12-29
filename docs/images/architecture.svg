@@ -1,59 +1,55 @@
-<svg width="920" height="520" viewBox="0 0 920 520" xmlns="http://www.w3.org/2000/svg">
-  <style>
-    .box { fill: #f8f9fb; stroke: #333; stroke-width: 1.5; }
-    .title { font: bold 18px Arial, sans-serif; fill: #1a1a1a; }
-    .label { font: bold 14px Arial, sans-serif; fill: #222; }
-    .small { font: 12px Arial, sans-serif; fill: #444; }
-    .arrow { stroke: #333; stroke-width: 1.5; marker-end: url(#arrowhead); }
-  </style>
-
+<svg width="920" height="580" viewBox="0 0 920 580" xmlns="http://www.w3.org/2000/svg">
   <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+      <feOffset dx="2" dy="2" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.2"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
     <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#333"/>
+      <polygon points="0 0, 10 3.5, 0 7" fill="#444"/>
     </marker>
   </defs>
 
-  <text x="460" y="35" text-anchor="middle" class="title">
-    GPU Cluster Capacity Simulator — Architecture
-  </text>
+  <style>
+    .box-input { fill: #e3f2fd; stroke: #1976d2; stroke-width: 2; }
+    .box-core { fill: #f1f8e9; stroke: #388e3c; stroke-width: 2; }
+    .box-output { fill: #fff3e0; stroke: #f57c00; stroke-width: 2; }
+    .title { font: bold 22px 'Segoe UI', Arial, sans-serif; fill: #263238; }
+    .label { font: bold 14px 'Segoe UI', Arial, sans-serif; fill: #333; }
+    .small { font: 12px 'Segoe UI', Arial, sans-serif; fill: #555; }
+    .arrow { stroke: #444; stroke-width: 2; marker-end: url(#arrowhead); fill: none; }
+  </style>
 
-  <rect x="40" y="70" width="260" height="120" rx="8" class="box"/>
-  <text x="170" y="95" text-anchor="middle" class="label">YAML Configs</text>
-  <text x="170" y="120" text-anchor="middle" class="small">Cluster (nodes, GPUs)</text>
-  <text x="170" y="140" text-anchor="middle" class="small">Workloads (train / inference)</text>
-  <text x="170" y="160" text-anchor="middle" class="small">Scheduler + Pricing</text>
+  <text x="460" y="40" text-anchor="middle" class="title">GPU Cluster Capacity Simulator Architecture</text>
 
-  <rect x="360" y="70" width="200" height="120" rx="8" class="box"/>
-  <text x="460" y="100" text-anchor="middle" class="label">CLI</text>
-  <text x="460" y="125" text-anchor="middle" class="small">gpu-sim run</text>
-  <text x="460" y="145" text-anchor="middle" class="small">Loads config</text>
-  <text x="460" y="165" text-anchor="middle" class="small">Runs simulation</text>
+  <g filter="url(#shadow)">
+    <rect x="50" y="80" width="240" height="130" rx="10" class="box-input"/>
+    <text x="170" y="110" text-anchor="middle" class="label">CONFIG &amp; WORKLOADS</text>
+    <text x="70" y="135" class="small">• Cluster Topology (Nodes/GPUs)</text>
+    <text x="70" y="155" class="small">• Poisson Job Arrival Rates</text>
+    <text x="70" y="175" class="small">• Training vs Inference Specs</text>
+    <text x="70" y="195" class="small">• Pricing &amp; SLA Tiers</text>
+  </g>
 
-  <rect x="80" y="240" width="220" height="140" rx="8" class="box"/>
-  <text x="190" y="270" text-anchor="middle" class="label">Metrics</text>
-  <text x="190" y="295" text-anchor="middle" class="small">Utilization</text>
-  <text x="190" y="315" text-anchor="middle" class="small">Queue depth</text>
-  <text x="190" y="335" text-anchor="middle" class="small">Wait &amp; SLA</text>
+  <g filter="url(#shadow)">
+    <rect x="340" y="80" width="240" height="130" rx="10" class="box-input"/>
+    <text x="460" y="110" text-anchor="middle" class="label">CLI CONTROLLER</text>
+    <text x="360" y="135" class="small">• argparse Command Parser</text>
+    <text x="360" y="155" class="small">• Config Validation Engine</text>
+    <text x="360" y="175" class="small">• Simulation Parameter Injection</text>
+  </g>
 
-  <rect x="320" y="240" width="280" height="140" rx="8" class="box"/>
-  <text x="460" y="270" text-anchor="middle" class="label">Simulation Engine</text>
-  <text x="460" y="295" text-anchor="middle" class="small">Job arrivals (Poisson)</text>
-  <text x="460" y="315" text-anchor="middle" class="small">FFD scheduler + packing</text>
-  <text x="460" y="335" text-anchor="middle" class="small">Discrete-time event loop</text>
-
-  <rect x="620" y="240" width="220" height="140" rx="8" class="box"/>
-  <text x="730" y="270" text-anchor="middle" class="label">GPU Cluster Model</text>
-  <text x="730" y="295" text-anchor="middle" class="small">Nodes</text>
-  <text x="730" y="315" text-anchor="middle" class="small">GPUs / node</text>
-  <text x="730" y="335" text-anchor="middle" class="small">Free vs busy GPUs</text>
-
-  <rect x="320" y="420" width="280" height="70" rx="8" class="box"/>
-  <text x="460" y="450" text-anchor="middle" class="label">Outputs</text>
-  <text x="460" y="470" text-anchor="middle" class="small">CSV → Notebook → Insights</text>
-
-  <line x1="300" y1="130" x2="360" y2="130" class="arrow"/>
-  <line x1="460" y1="190" x2="460" y2="240" class="arrow"/>
-  <line x1="600" y1="310" x2="620" y2="310" class="arrow"/>
-  <line x1="320" y1="310" x2="300" y2="310" class="arrow"/>
-  <line x1="460" y1="380" x2="460" y2="420" class="arrow"/>
-</svg>
+  <g filter="url(#shadow)">
+    <rect x="310" y="260" width="300" height="160" rx="10" class="box-core"/>
+    <text x="460" y="290" text-anchor="middle" class="label">SIMULATION ENGINE</text>
+    <text x="330" y="320" class="small">• Discrete-Time Event Loop</text>
+    <text x="330" y="340" class="small">• First-Fit Decreasing (FFD) Scheduler</text>
+    <text x="330" y="360" class="small">• Fragmentation &amp; Packing Logic</text>
+    <text x="330" y="3
