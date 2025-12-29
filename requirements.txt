@@ -1,29 +1,7 @@
 # Streamlit deploy requirements
-# Install this repo as a package (provides gpu-sim CLI + simulator modules)
+# Install this repo as a package so gpu-sim CLI + gpu_sim module are available
 -e .
 
-# App/UI dependencies
+# UI deps for app.py
 streamlit>=1.36
 plotly>=5.20
-
-# Runtime deps (redundant but safe for deploy environments)
-pandas>=2.2
-pyyaml>=6.0
-
-# 1) Clean install (core)
-pip install -e .
-
-# 2) Dev install (tests + lint + plotting)
-pip install -e ".[dev]"
-
-# 3) Run simulator CLI
-gpu-sim --help
-gpu-sim run --config configs/base.yaml --out results/base_tick.csv --out-jobs results/base_jobs.csv
-
-# 4) Run Streamlit demo locally
-pip install -e ".[demo]"
-streamlit run app.py
-
-# 5) Deploy-style install (matches Streamlit Cloud behavior)
-pip install -r requirements.txt
-streamlit run app.py
