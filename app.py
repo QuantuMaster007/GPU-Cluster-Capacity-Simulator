@@ -23,7 +23,10 @@ def run_sim(config_path: Path):
         "--out", str(tick),
         "--out-jobs", str(jobs),
     ]
-    out = subprocess.check_output(cmd, text=True)
+    try:
+        out = subprocess.check_output(cmd, text=True)
+    except FileNotFoundError:
+        out = ""
     return tick, jobs, out
 
 
